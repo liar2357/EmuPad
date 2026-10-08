@@ -1,0 +1,3 @@
+pub enum ReloadEvent {
+    ChangeConfigFile,
+}
