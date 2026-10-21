@@ -1,6 +1,7 @@
 {
   lib,
   rustPlatform,
+  stdenv,
 }:
 
 rustPlatform.buildRustPackage {
@@ -14,10 +15,12 @@ rustPlatform.buildRustPackage {
   installPhase = ''
     runHook preInstall
 
-    install -Dm755 target/release/emu-pad \
+    install -Dm755 \
+      target/${stdenv.hostPlatform.rust.rustcTarget}/release/emu-pad \
       $out/bin/emu-pad
 
-    install -Dm755 target/release/emu-padctl \
+    install -Dm755 \
+      target/${stdenv.hostPlatform.rust.rustcTarget}/release/emu-padctl \
       $out/bin/emu-padctl
 
     runHook postInstall
